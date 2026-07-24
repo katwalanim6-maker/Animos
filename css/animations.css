@@ -27,3 +27,17 @@ background-position:0% 50%;
 }
 
 }
+
+}
+
+@keyframes glassShine{
+
+0%{
+left:-120%;
+}
+
+100%{
+left:180%;
+}
+
+}
