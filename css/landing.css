@@ -4,10 +4,17 @@
 
     inset:0;
 
-    background:
-    radial-gradient(circle at top,#5a44ff33,transparent 45%),
-    radial-gradient(circle at bottom,#00d4ff22,transparent 45%),
-    #05070f;
+    background:linear-gradient(
+        -45deg,
+        #04060d,
+        #131a33,
+        #24184b,
+        #04060d
+    );
+
+    background-size:400% 400%;
+
+    animation:aurora 15s ease infinite;
 
     z-index:-1;
 
