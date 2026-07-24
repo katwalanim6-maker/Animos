@@ -41,3 +41,28 @@ left:180%;
 }
 
 }
+
+@keyframes lensMove{
+
+0%{
+
+transform:
+translateX(-120px);
+
+}
+
+50%{
+
+transform:
+translateX(320px);
+
+}
+
+100%{
+
+transform:
+translateX(-120px);
+
+}
+
+}
