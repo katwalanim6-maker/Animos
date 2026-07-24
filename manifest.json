@@ -1,7 +1,7 @@
 {
   "name": "Anim OS",
   "short_name": "Anim OS",
-  "start_url": "/",
+  "start_url": "/Animos/",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#000000",
