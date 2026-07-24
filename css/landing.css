@@ -14,16 +14,38 @@
 }
 
 .navbar{
-
-    width:90%;
-
+    width:92%;
+    max-width:1400px;
     margin:20px auto;
-
+    padding:14px 22px;
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
+    position:sticky;
+    top:20px;
+    z-index:100;
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(24px);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:999px;
+}
+
+.nav-left{
+    display:flex;
+    align-items:center;
+}
+
+.nav-right{
+    display:flex;
+    gap:14px;
+    align-items:center;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:700;
+    letter-spacing:1px;
+}
 
 }
 
