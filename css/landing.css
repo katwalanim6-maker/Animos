@@ -94,9 +94,36 @@
 
 .logo{
 
-    font-size:28px;
+    display:flex;
+
+    align-items:center;
+
+    gap:2px;
+
+    font-size:30px;
+
     font-weight:700;
+
     letter-spacing:1px;
+
+    position:relative;
+
+}
+.logo span{
+
+    display:inline-block;
+
+    transition:
+    transform .25s ease,
+    filter .25s ease;
+
+}
+
+.space{
+
+    width:10px;
+
+}
 
 }
 
