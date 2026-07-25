@@ -43,7 +43,8 @@ signupBtn.addEventListener("click", async () => {
         window.location.href = "dashboard.html";
 
     } catch (error) {
-        alert(error.message);
-    }
+    console.log(error);
+    alert(error.code + "\n" + error.message);
+}
 
 });
