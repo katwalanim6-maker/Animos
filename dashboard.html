@@ -1,1 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Dashboard | Anim OS</title>
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/dashboard.css">
+
+</head>
+
+<body>
+
+<div class="background"></div>
+
+<div class="dashboard">
+
+    <aside class="sidebar">
+
+        <h2>Anim OS</h2>
+
+        <button class="nav-btn active">🏠 Home</button>
+
+        <button class="nav-btn">👤 Profile</button>
+
+        <button class="nav-btn">🔗 Links</button>
+
+        <button class="nav-btn">📱 QR Code</button>
+
+        <button class="nav-btn">📊 Analytics</button>
+
+        <button class="nav-btn">⚙️ Settings</button>
+
+        <button id="logoutBtn" class="logout-btn">
+            🚪 Logout
+        </button>
+
+    </aside>
+
+    <main class="content">
+
+        <h1 id="welcomeText">
+            Welcome back...
+        </h1>
+
+        <div class="profile-card">
+
+            <img id="profilePic"
+            src="assets/default-profile.png">
+
+            <h2 id="username">
+                Loading...
+            </h2>
+
+            <p id="email">
+                Loading...
+            </p>
+
+            <button>
+                Upload Profile Picture
+            </button>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script type="module" src="js/dashboard.js"></script>
+
+</body>
+</html>
