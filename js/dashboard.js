@@ -18,6 +18,9 @@ const welcomeText = document.getElementById("welcomeText");
 const username = document.getElementById("username");
 const email = document.getElementById("email");
 const logoutBtn = document.getElementById("logoutBtn");
+const uploadBtn = document.getElementById("uploadBtn");
+const fileInput = document.getElementById("fileInput");
+const profilePic = document.getElementById("profilePic");
 
 onAuthStateChanged(auth, async (user) => {
 
