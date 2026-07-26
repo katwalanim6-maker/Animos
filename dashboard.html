@@ -12,7 +12,6 @@
 </head>
 
 <body>
-    <div class="background"></div>
 
 <div class="background"></div>
 
@@ -34,7 +33,7 @@
 
         <button class="nav-btn">⚙️ Settings</button>
 
-        <button id="logoutBtn" class="logout-btn">
+        <button id="logoutBtn" class="nav-btn">
             🚪 Logout
         </button>
 
@@ -47,26 +46,11 @@
         </h1>
 
         <div class="profile-card">
-            <div class="progress-card">
 
-<h2>📈 Profile Completion</h2>
-
-<div class="progress">
-<div class="progress-fill"></div>
-</div>
-
-<p class="check">✅ Name</p>
-<p class="check">✅ Email</p>
-<p class="check">❌ Username</p>
-<p class="check">❌ Bio</p>
-<p class="check">❌ Profile Picture</p>
-<p class="check">❌ Banner</p>
-
-            </div>
-            
-
-            <img id="profilePic"
-            src="assets/default-profile.png">
+            <img
+                id="profilePic"
+                src="assets/default-profile.png"
+                alt="Profile Picture">
 
             <h2 id="username">
                 Loading...
@@ -76,9 +60,26 @@
                 Loading...
             </p>
 
-            <button>
+            <button id="uploadBtn">
                 Upload Profile Picture
             </button>
+
+        </div>
+
+        <div class="progress-card">
+
+            <h2>📈 Profile Completion</h2>
+
+            <div class="progress">
+                <div class="progress-fill"></div>
+            </div>
+
+            <p class="check">✅ Name</p>
+            <p class="check">✅ Email</p>
+            <p class="check">❌ Username</p>
+            <p class="check">❌ Bio</p>
+            <p class="check">❌ Profile Picture</p>
+            <p class="check">❌ Banner</p>
 
         </div>
 
