@@ -1,4 +1,24 @@
 body{
+  .background{
+
+position:fixed;
+inset:0;
+
+background:linear-gradient(
+-45deg,
+#04060d,
+#131313,
+#1b1b1b,
+#04060d
+);
+
+background-size:400% 400%;
+
+animation:aurora 15s ease infinite;
+
+z-index:-1;
+
+  }
 margin:0;
 font-family:Arial,sans-serif;
 color:white;
