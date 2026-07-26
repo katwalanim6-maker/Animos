@@ -1,17 +1,14 @@
-import {
-    updateDoc
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-
 import { auth, db } from "./firebase.js";
 
 import {
-  onAuthStateChanged,
-  signOut
+    onAuthStateChanged,
+    signOut
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 import {
-  doc,
-  getDoc
+    doc,
+    getDoc,
+    updateDoc
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 const welcomeText = document.getElementById("welcomeText");
@@ -29,8 +26,8 @@ onAuthStateChanged(auth, async (user) => {
         return;
     }
 
-    const docRef = doc(db, "users", user.uid);
-    const docSnap = await getDoc(docRef);
+    const ref = doc(db, "users", user.uid);
+    const docSnap = await getDoc(ref);
 
     if (docSnap.exists()) {
 
@@ -40,7 +37,45 @@ onAuthStateChanged(auth, async (user) => {
         username.textContent = data.name;
         email.textContent = data.email;
 
+        if (data.photoURL) {
+            profilePic.src = data.photoURL;
+        }
     }
+
+    uploadBtn.onclick = () => {
+        fileInput.click();
+    };
+
+    fileInput.onchange = async () => {
+
+        const file = fileInput.files[0];
+
+        if (!file) return;
+
+        uploadBtn.innerText = "Uploading...";
+
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("upload_preset", "animos-profile");
+
+        const response = await fetch(
+            "https://api.cloudinary.com/v1_1/bdya7qoz/image/upload",
+            {
+                method: "POST",
+                body: formData
+            }
+        );
+
+        const result = await response.json();
+
+        await updateDoc(ref, {
+            photoURL: result.secure_url
+        });
+
+        profilePic.src = result.secure_url;
+
+        uploadBtn.innerText = "Uploaded ✅";
+    };
 
 });
 
