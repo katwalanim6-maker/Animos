@@ -1,1 +1,16 @@
-
+{
+  "default": {
+    "name": "Midnight",
+    "background": "#050505",
+    "surface": "#101010",
+    "text": "#ffffff",
+    "muted": "#a0a0a0"
+  },
+  "soft": {
+    "name": "Soft Dark",
+    "background": "#0b0d12",
+    "surface": "#151923",
+    "text": "#f5f7ff",
+    "muted": "#a8afc0"
+  }
+}
