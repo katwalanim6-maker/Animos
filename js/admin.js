@@ -1,8 +1,6 @@
 import { auth, db } from './firebase.js';
 import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js';
-import { collection, getDocs, query, orderBy, limit } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js';
-
-const ADMIN_EMAILS = ['admin@animos.local'];
+import { collection, doc, getDoc, getDocs, limit, orderBy, query } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js';
 
 export function initAdmin({ onReady } = {}) {
   return onAuthStateChanged(auth, async (user) => {
@@ -11,9 +9,11 @@ export function initAdmin({ onReady } = {}) {
       return;
     }
 
-    const allowed = ADMIN_EMAILS.includes((user.email || '').toLowerCase());
-    if (!allowed) {
-      document.body.innerHTML = '<main class="admin-denied"><h1>Access denied</h1><p>Your account is not configured as an administrator.</p><a href="../dashboard.html">Return to dashboard</a></main>';
+    const userSnap = await getDoc(doc(db, 'users', user.uid));
+    const role = userSnap.exists() ? userSnap.data().role : null;
+
+    if (role !== 'admin') {
+      document.body.innerHTML = '<main class="admin-denied"><h1>Access denied</h1><p>Your account does not have administrator privileges.</p><a href="../dashboard.html">Return to dashboard</a></main>';
       return;
     }
 
@@ -22,13 +22,11 @@ export function initAdmin({ onReady } = {}) {
 }
 
 export async function loadUsers(max = 100) {
-  const users = collection(db, 'users');
-  const snap = await getDocs(query(users, orderBy('createdAt', 'desc'), limit(max)));
+  const snap = await getDocs(query(collection(db, 'users'), orderBy('createdAt', 'desc'), limit(max)));
   return snap.docs.map((item) => ({ id: item.id, ...item.data() }));
 }
 
 export async function loadLinks(max = 100) {
-  const links = collection(db, 'links');
-  const snap = await getDocs(query(links, limit(max)));
+  const snap = await getDocs(query(collection(db, 'links'), limit(max)));
   return snap.docs.map((item) => ({ id: item.id, ...item.data() }));
 }
