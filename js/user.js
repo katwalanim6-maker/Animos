@@ -1,38 +1,47 @@
-import { db } from "./firebase.js";
+import { db } from './firebase.js';
+import { collection, getDocs, query, where, limit } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js';
 
-import {
-collection,
-query,
-where,
-getDocs
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+const params = new URLSearchParams(window.location.search);
+const username = (params.get('u') || '').trim().replace(/^@+/, '').toLowerCase();
+const displayName = document.getElementById('displayName');
+const usernameEl = document.getElementById('username');
+const bio = document.getElementById('bio');
+const locationEl = document.getElementById('location');
+const website = document.getElementById('website');
 
-const params=new URLSearchParams(window.location.search);
+async function loadProfile() {
+  if (!username) {
+    displayName.textContent = 'Profile not found';
+    return;
+  }
 
-const username=params.get("u");
+  try {
+    const snap = await getDocs(query(collection(db, 'users'), where('username', '==', username), limit(1)));
+    if (snap.empty) {
+      displayName.textContent = 'Profile not found';
+      return;
+    }
 
-const q=query(
-collection(db,"users"),
-where("username","==",username)
-);
+    const data = snap.docs[0].data();
+    displayName.textContent = data.displayName || data.name || 'Unnamed user';
+    usernameEl.textContent = data.username ? `@${data.username}` : '';
+    bio.textContent = data.bio || '';
+    locationEl.textContent = data.location || '';
 
-const snap=await getDocs(q);
-
-if(!snap.empty){
-
-const data=snap.docs[0].data();
-
-document.getElementById("displayName").textContent=data.displayName;
-
-document.getElementById("username").textContent="@"+data.username;
-
-document.getElementById("bio").textContent=data.bio;
-
-document.getElementById("location").textContent=data.location;
-
-const website=document.getElementById("website");
-
-website.href=data.website;
-website.textContent=data.website;
-
+    if (data.website) {
+      try {
+        const parsed = new URL(data.website);
+        if (['http:', 'https:'].includes(parsed.protocol)) {
+          website.href = parsed.href;
+          website.textContent = parsed.href;
+          website.rel = 'noopener noreferrer';
+        }
+      } catch { /* Ignore invalid profile URL. */ }
+    }
+  } catch (error) {
+    console.error('Profile load failed:', error);
+    displayName.textContent = 'Unable to load profile';
+  }
 }
+
+loadProfile();
