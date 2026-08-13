@@ -1,1 +1,9 @@
-
+{
+  "name": "Anim OS",
+  "description": "A personal identity, profile, links and AI workspace.",
+  "features": ["authentication", "profile", "links", "AI chat", "analytics", "settings"],
+  "assistant": {
+    "name": "AI Anim",
+    "tone": "clear, helpful and concise"
+  }
+}
