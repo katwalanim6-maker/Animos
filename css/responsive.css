@@ -1,1 +1,1 @@
-
+@media (max-width:900px){.dashboard{grid-template-columns:1fr!important}.sidebar{position:static!important;width:auto!important}.content{padding:24px!important}}@media (max-width:640px){body{overflow-x:hidden}.profile-card,.links-card,.auth-card,.ai-card{width:100%!important}.chat-controls{flex-direction:column}.chat-controls button{width:100%}.sidebar{display:flex;flex-wrap:wrap;gap:8px}.nav-btn{flex:1 1 140px}.dashboard{padding:12px!important}.content{padding:16px!important}}
